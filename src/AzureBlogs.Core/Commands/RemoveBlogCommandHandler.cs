@@ -1,7 +1,7 @@
-﻿using AzureBlogs.Domain.Repositories;
+﻿using AzureBlogs.Core.Repositories;
 using MediatR;
 
-namespace AzureBlogs.Domain.Commands
+namespace AzureBlogs.Core.Commands
 {
     public class RemoveBlogCommandHandler : IRequestHandler<RemoveBlogCommand, bool>
     {

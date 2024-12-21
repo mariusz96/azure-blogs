@@ -1,7 +1,7 @@
-﻿using AzureBlogs.Domain.Commands;
+﻿using AzureBlogs.Core.Commands;
 using FluentValidation;
 
-namespace AzureBlogs.Domain.Validators
+namespace AzureBlogs.Core.Validators
 {
     public class AddPostCommandValidator : AbstractValidator<AddPostCommand>
     {
@@ -9,7 +9,7 @@ namespace AzureBlogs.Domain.Validators
         {
             RuleFor(b => b.Title).NotEmpty();
             RuleFor(b => b.Content).NotEmpty();
-            RuleFor(b => b.BlogId).NotEmpty().GreaterThanOrEqualTo(1);
+            RuleFor(b => b.BlogId).NotEmpty();
         }
     }
 }

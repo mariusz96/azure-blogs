@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using AzureBlogs.Domain.Entities;
-using AzureBlogs.Domain.Repositories;
+using AzureBlogs.Core.Entities;
+using AzureBlogs.Core.Repositories;
 using MediatR;
 
-namespace AzureBlogs.Domain.Commands
+namespace AzureBlogs.Core.Commands
 {
     public class AddBlogCommandHandler : IRequestHandler<AddBlogCommand, int>
     {

@@ -1,8 +1,8 @@
-﻿using AzureBlogs.Domain.Commands;
-using AzureBlogs.Domain.Extensions;
+﻿using AzureBlogs.Core.Commands;
+using AzureBlogs.Core.Extensions;
 using FluentValidation;
 
-namespace AzureBlogs.Domain.Validators
+namespace AzureBlogs.Core.Validators
 {
     public class AddBlogCommandValidator : AbstractValidator<AddBlogCommand>
     {

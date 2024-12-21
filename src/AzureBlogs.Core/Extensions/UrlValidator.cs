@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace AzureBlogs.Domain.Extensions
+namespace AzureBlogs.Core.Extensions
 {
     public class UrlValidator<T> : PropertyValidator<T, string?>
     {

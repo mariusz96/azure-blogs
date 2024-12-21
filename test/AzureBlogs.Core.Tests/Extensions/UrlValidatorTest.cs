@@ -1,7 +1,7 @@
-﻿using AzureBlogs.Domain.Extensions;
+﻿using AzureBlogs.Core.Extensions;
 using FluentValidation;
 
-namespace AzureBlogs.Domain.Tests.Extensions
+namespace AzureBlogs.Core.Tests.Extensions
 {
     public class UrlValidatorTest
     {

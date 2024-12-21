@@ -1,4 +1,4 @@
-﻿using AzureBlogs.Domain.Entities;
+﻿using AzureBlogs.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace AzureBlogs.Infrastructure.Contexts

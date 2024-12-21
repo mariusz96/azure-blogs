@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AzureBlogs.Domain\AzureBlogs.Domain.csproj" />
+    <ProjectReference Include="..\AzureBlogs.Core\AzureBlogs.Core.csproj" />
   </ItemGroup>
 
 </Project>

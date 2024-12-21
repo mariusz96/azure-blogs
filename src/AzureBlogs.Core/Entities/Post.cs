@@ -1,4 +1,4 @@
-﻿namespace AzureBlogs.Domain.Entities
+﻿namespace AzureBlogs.Core.Entities
 {
     public class Post
     {

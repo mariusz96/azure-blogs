@@ -1,4 +1,4 @@
-using AzureBlogs.Domain.Commands;
+using AzureBlogs.Core.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

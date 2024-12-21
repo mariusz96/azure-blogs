@@ -24,7 +24,7 @@ namespace AzureBlogs.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AzureBlogs.Domain.Entities.Blog", b =>
+            modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace AzureBlogs.Infrastructure.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("AzureBlogs.Domain.Entities.Post", b =>
+            modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,9 +67,9 @@ namespace AzureBlogs.Infrastructure.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("AzureBlogs.Domain.Entities.Post", b =>
+            modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
                 {
-                    b.HasOne("AzureBlogs.Domain.Entities.Blog", "Blog")
+                    b.HasOne("AzureBlogs.Core.Entities.Blog", "Blog")
                         .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -78,7 +78,7 @@ namespace AzureBlogs.Infrastructure.Migrations
                     b.Navigation("Blog");
                 });
 
-            modelBuilder.Entity("AzureBlogs.Domain.Entities.Blog", b =>
+            modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
                 {
                     b.Navigation("Posts");
                 });

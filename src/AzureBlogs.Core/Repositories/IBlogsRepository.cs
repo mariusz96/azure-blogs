@@ -1,6 +1,6 @@
-﻿using AzureBlogs.Domain.Entities;
+﻿using AzureBlogs.Core.Entities;
 
-namespace AzureBlogs.Domain.Repositories
+namespace AzureBlogs.Core.Repositories
 {
     public interface IBlogsRepository
     {

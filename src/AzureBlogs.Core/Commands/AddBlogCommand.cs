@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace AzureBlogs.Domain.Commands
+namespace AzureBlogs.Core.Commands
 {
     public class AddBlogCommand : IRequest<int>
     {

@@ -1,4 +1,4 @@
-using AzureBlogs.Domain.Commands;
+using AzureBlogs.Core.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,16 +22,14 @@ namespace AzureBlogs.Api.Controllers
             return StatusCode(StatusCodes.Status201Created, response);
         }
 
-        [HttpDelete("{id:min(1)}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveBlog(int id)
         {
-            bool response = await _mediator.Send(new RemoveBlogCommand { Id = id });
-            if (!response)
+            bool response = await _mediator.Send(new RemoveBlogCommand
             {
-                return NotFound();
-            }
-
-            return NoContent();
+                Id = id
+            });
+            return response ? NoContent() : NotFound();
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using AzureBlogs.Domain.Profiles;
+using AzureBlogs.Core.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AzureBlogs.Domain.Tests.Profiles
+namespace AzureBlogs.Core.Tests.Profiles
 {
     public class MapperConfigurationTest
     {

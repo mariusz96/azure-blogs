@@ -1,8 +1,8 @@
 using Azure.Identity;
-using AzureBlogs.Domain.Commands;
-using AzureBlogs.Domain.Profiles;
-using AzureBlogs.Domain.Repositories;
-using AzureBlogs.Domain.Validators;
+using AzureBlogs.Core.Commands;
+using AzureBlogs.Core.Profiles;
+using AzureBlogs.Core.Repositories;
+using AzureBlogs.Core.Validators;
 using AzureBlogs.Infrastructure.Contexts;
 using AzureBlogs.Infrastructure.Repositories;
 using FluentValidation;

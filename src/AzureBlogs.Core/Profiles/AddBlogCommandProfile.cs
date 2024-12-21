@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using AzureBlogs.Domain.Commands;
-using AzureBlogs.Domain.Entities;
+using AzureBlogs.Core.Commands;
+using AzureBlogs.Core.Entities;
 
-namespace AzureBlogs.Domain.Profiles
+namespace AzureBlogs.Core.Profiles
 {
     public class AddBlogCommandProfile : Profile
     {

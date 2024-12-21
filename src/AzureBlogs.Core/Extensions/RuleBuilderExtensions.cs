@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace AzureBlogs.Domain.Extensions
+namespace AzureBlogs.Core.Extensions
 {
     public static class RuleBuilderExtensions
     {

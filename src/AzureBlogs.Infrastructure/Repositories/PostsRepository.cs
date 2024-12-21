@@ -1,5 +1,5 @@
-﻿using AzureBlogs.Domain.Entities;
-using AzureBlogs.Domain.Repositories;
+﻿using AzureBlogs.Core.Entities;
+using AzureBlogs.Core.Repositories;
 using AzureBlogs.Infrastructure.Contexts;
 
 namespace AzureBlogs.Infrastructure.Repositories
