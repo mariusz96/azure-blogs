@@ -1,35 +1,38 @@
-using AzureBlogs.Core.Commands;
-using MediatR;
+using AutoMapper;
+using AzureBlogs.Api.Dtos;
+using AzureBlogs.Core.Entities;
+using AzureBlogs.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AzureBlogs.Api.Controllers
+namespace AzureBlogs.Api.Controllers;
+
+[ApiController]
+[Route("api/blogs")]
+public class BlogsController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class BlogsController : ControllerBase
+    private readonly IBlogsService service;
+    private readonly IMapper mapper;
+
+    public BlogsController(IBlogsService service, IMapper mapper)
     {
-        private readonly IMediator _mediator;
+        this.service = service;
+        this.mapper = mapper;
+    }
 
-        public BlogsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpPost]
+    public async Task<ActionResult<int>> CreateBlog([FromBody] CreateBlogDto createBlog)
+    {
+        var blog = mapper.Map<Blog>(createBlog);
+        await service.CreateBlog(blog);
 
-        [HttpPost]
-        public async Task<ActionResult<int>> AddBlog(AddBlogCommand command)
-        {
-            int response = await _mediator.Send(command);
-            return StatusCode(StatusCodes.Status201Created, response);
-        }
+        return StatusCode(StatusCodes.Status201Created, blog.Id);
+    }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveBlog(int id)
-        {
-            bool response = await _mediator.Send(new RemoveBlogCommand
-            {
-                Id = id
-            });
-            return response ? NoContent() : NotFound();
-        }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> RemoveBlog([FromRoute] int id)
+    {
+        bool removed = await service.RemoveBlog(id);
+
+        return removed ? NoContent() : NotFound();
     }
 }

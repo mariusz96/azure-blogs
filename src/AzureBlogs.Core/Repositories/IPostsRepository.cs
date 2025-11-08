@@ -1,9 +1,8 @@
 ﻿using AzureBlogs.Core.Entities;
 
-namespace AzureBlogs.Core.Repositories
+namespace AzureBlogs.Core.Repositories;
+
+public interface IPostsRepository
 {
-    public interface IPostsRepository
-    {
-        Task AddPostAsync(Post post);
-    }
+    Task CreatePostAsync(Post post);
 }

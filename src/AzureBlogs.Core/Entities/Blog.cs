@@ -1,10 +1,9 @@
-﻿namespace AzureBlogs.Core.Entities
-{
-    public class Blog
-    {
-        public int Id { get; set; }
-        public string Url { get; set; } = string.Empty;
+﻿namespace AzureBlogs.Core.Entities;
 
-        public List<Post> Posts { get; } = new();
-    }
+public class Blog
+{
+    public int Id { get; set; }
+    public string Url { get; set; } = string.Empty;
+
+    public List<Post> Posts { get; } = new();
 }

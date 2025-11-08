@@ -2,21 +2,20 @@
 using AzureBlogs.Core.Repositories;
 using AzureBlogs.Infrastructure.Contexts;
 
-namespace AzureBlogs.Infrastructure.Repositories
+namespace AzureBlogs.Infrastructure.Repositories;
+
+public class PostsRepository : IPostsRepository
 {
-    public class PostsRepository : IPostsRepository
+    private readonly AzureBlogsContext context;
+
+    public PostsRepository(AzureBlogsContext context)
     {
-        private readonly AzureBlogsContext _context;
+        this.context = context;
+    }
 
-        public PostsRepository(AzureBlogsContext context)
-        {
-            _context = context;
-        }
-
-        public async Task AddPostAsync(Post post)
-        {
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
-        }
+    public async Task CreatePostAsync(Post post)
+    {
+        context.Posts.Add(post);
+        await context.SaveChangesAsync();
     }
 }

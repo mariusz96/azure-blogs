@@ -8,81 +8,80 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AzureBlogs.Infrastructure.Migrations
+namespace AzureBlogs.Infrastructure.Migrations;
+
+[DbContext(typeof(AzureBlogsContext))]
+[Migration("20241217190728_InitialCreate")]
+partial class InitialCreate
 {
-    [DbContext(typeof(AzureBlogsContext))]
-    [Migration("20241217190728_InitialCreate")]
-    partial class InitialCreate
+    /// <inheritdoc />
+    protected override void BuildTargetModel(ModelBuilder modelBuilder)
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "9.0.0")
+            .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Url")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Blogs");
-                });
+                b.ToTable("Blogs");
+            });
 
-            modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+        modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
+                b.Property<int>("BlogId")
+                    .HasColumnType("int");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Content")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                b.Property<string>("Title")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("BlogId");
+                b.HasIndex("BlogId");
 
-                    b.ToTable("Posts");
-                });
+                b.ToTable("Posts");
+            });
 
-            modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
-                {
-                    b.HasOne("AzureBlogs.Core.Entities.Blog", "Blog")
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("AzureBlogs.Core.Entities.Post", b =>
+            {
+                b.HasOne("AzureBlogs.Core.Entities.Blog", "Blog")
+                    .WithMany("Posts")
+                    .HasForeignKey("BlogId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("Blog");
-                });
+                b.Navigation("Blog");
+            });
 
-            modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
-                {
-                    b.Navigation("Posts");
-                });
+        modelBuilder.Entity("AzureBlogs.Core.Entities.Blog", b =>
+            {
+                b.Navigation("Posts");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }

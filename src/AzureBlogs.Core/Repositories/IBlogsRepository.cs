@@ -1,11 +1,10 @@
 ﻿using AzureBlogs.Core.Entities;
 
-namespace AzureBlogs.Core.Repositories
+namespace AzureBlogs.Core.Repositories;
+
+public interface IBlogsRepository
 {
-    public interface IBlogsRepository
-    {
-        Task<Blog?> GetBlogAsync(int id);
-        Task AddBlogAsync(Blog blog);
-        Task RemoveBlogAsync(Blog blog);
-    }
+    Task<Blog?> GetBlogAsync(int id);
+    Task CreateBlogAsync(Blog blog);
+    Task RemoveBlogAsync(Blog blog);
 }

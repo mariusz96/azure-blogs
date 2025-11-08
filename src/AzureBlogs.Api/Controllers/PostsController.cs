@@ -1,25 +1,30 @@
-using AzureBlogs.Core.Commands;
-using MediatR;
+using AutoMapper;
+using AzureBlogs.Api.Dtos;
+using AzureBlogs.Core.Entities;
+using AzureBlogs.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AzureBlogs.Api.Controllers
+namespace AzureBlogs.Api.Controllers;
+
+[ApiController]
+[Route("api/posts")]
+public class PostsController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class PostsController : ControllerBase
+    private readonly IPostsService service;
+    private readonly IMapper mapper;
+
+    public PostsController(IPostsService service, IMapper mapper)
     {
-        private readonly IMediator _mediator;
+        this.service = service;
+        this.mapper = mapper;
+    }
 
-        public PostsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpPost]
+    public async Task<ActionResult<int>> CreatePost([FromBody] CreatePostDto createPost)
+    {
+        var post = mapper.Map<Post>(createPost);
+        await service.CreatePost(post);
 
-        [HttpPost]
-        public async Task<ActionResult<int>> AddPost(AddPostCommand command)
-        {
-            int response = await _mediator.Send(command);
-            return StatusCode(StatusCodes.Status201Created, response);
-        }
+        return StatusCode(StatusCodes.Status201Created, post.Id);
     }
 }

@@ -1,12 +1,9 @@
 using Azure.Identity;
-using AzureBlogs.Core.Commands;
 using AzureBlogs.Core.Profiles;
 using AzureBlogs.Core.Repositories;
-using AzureBlogs.Core.Validators;
+using AzureBlogs.Core.Services;
 using AzureBlogs.Infrastructure.Contexts;
 using AzureBlogs.Infrastructure.Repositories;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,30 +15,19 @@ builder.Configuration.AddAzureKeyVault(
 builder.Services.AddDbContext<AzureBlogsContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AzureBlogsContext")));
 
+builder.Services.AddScoped<IBlogsService, BlogsService>();
+builder.Services.AddScoped<IPostsService, PostsService>();
+
 builder.Services.AddScoped<IBlogsRepository, BlogsRepository>();
 builder.Services.AddScoped<IPostsRepository, PostsRepository>();
 
-builder.Services.AddAutoMapper(typeof(AddBlogCommandProfile).Assembly);
-
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AddBlogCommandHandler).Assembly));
-
-builder.Services.AddValidatorsFromAssembly(typeof(AddBlogCommandValidator).Assembly);
-builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddAutoMapper(typeof(CreateBlogDtoProfile).Assembly);
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/error-development");
-}
-else
-{
-    app.UseExceptionHandler("/error");
-}
 
 app.UseAuthorization();
 
